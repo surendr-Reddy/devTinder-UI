@@ -1,9 +1,14 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import {addProfileUser} from "./utils/profileSlice"
+
 
 const Login = () => {
   const [password, setPassword] = useState("Sure@1234");
   const [emailId, setEmailId] = useState("babu.reddy@gmail.com");
+
+  const dispatch=useDispatch();
 
   const handelSubmit = async () => {
     try {
@@ -12,7 +17,8 @@ const Login = () => {
         { emailId, password },
         { withCredentials: true }
       );
-      console.log(response);
+   
+      dispatch(addProfileUser(response.data))
     } catch (error) {
       console.log(error.message);
     }
