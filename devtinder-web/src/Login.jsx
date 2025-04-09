@@ -1,7 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {addProfileUser} from "./utils/profileSlice"
+import { useNavigate } from "react-router";
 
 
 const Login = () => {
@@ -9,9 +10,13 @@ const Login = () => {
   const [emailId, setEmailId] = useState("babu.reddy@gmail.com");
 
   const dispatch=useDispatch();
+  const navigate = useNavigate();
+  const profileData= useSelector((store)=>store.profileData)
 
+  
   const handelSubmit = async () => {
     try {
+      
       const response = await axios.post(
         "http://localhost:7777/login",
         { emailId, password },
@@ -19,6 +24,8 @@ const Login = () => {
       );
    
       dispatch(addProfileUser(response.data))
+      return navigate('/feed')
+      
     } catch (error) {
       console.log(error.message);
     }
@@ -81,7 +88,7 @@ const Login = () => {
                 </g>
               </svg>
               <input
-                type="email"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter Password"

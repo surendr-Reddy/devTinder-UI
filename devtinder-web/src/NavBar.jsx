@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router";
 
 const NavBar = () => {
   const userData = useSelector((store) => {
     return store.profileData;
   });
-  console.log(userData);
 
   return (
     <>
@@ -12,7 +13,8 @@ const NavBar = () => {
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">devTinder</a>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center ">
+          <div> {userData?<p> Welcome {userData?.firstName} {userData?.lastName}</p>:null}</div>
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -38,10 +40,10 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
