@@ -3,9 +3,11 @@ import React, { useEffect } from 'react'
 
 import { useSelector } from 'react-redux'
 import { DEFAULT_USER_IMAGE } from '../utils/constants'
+import { useNavigate } from 'react-router'
 
 const Profile = () => {
   const userData = useSelector((store)=>store.user)
+  const navigate=useNavigate();
   if (!userData) return 
   const {firstName,lastName,age,about,photoUrl,skills,gender} =userData
  
@@ -22,7 +24,9 @@ const Profile = () => {
       <p>Age: {age??age} {gender??gender}</p>
       <p>{about??about}</p>
       <div ><span className='font-bold'>Skills:</span> {skills.join(",")}</div>
-      
+      <div className='flex  justify-end mt-4'>
+        <button onClick={()=>{navigate("/profile/edit")}} className='btn  btn-primary '>Edit Profile  </button>
+      </div>
     </div>
   </div>
   </div>
