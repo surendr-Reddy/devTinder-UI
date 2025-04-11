@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {addProfileUser} from "./utils/profileSlice"
+import {addProfileUser} from "../utils/profileSlice"
 import { useNavigate } from "react-router";
-import { BASEURL } from "./utils/constants";
+import { BASEURL } from "../utils/constants";
 
 
 const Login = () => {
