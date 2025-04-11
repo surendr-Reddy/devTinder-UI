@@ -9,35 +9,33 @@ import { addProfileUser, removeProfileUser } from "./utils/profileSlice";
 import Cookies from "js-cookie"
 
 const Body = () => {
-  const userData =useSelector((store)=>{store})
+  const userData =useSelector((store)=>store.user)
   console.log(userData);
   
   const dispatch =useDispatch()
   const navigate =useNavigate();
-  // const token =Cookies.get("token")
-  // console.log(token);
+   const token =Cookies.get("token")
+
   
-  // useEffect(()=>{if (!token && !userData){
-  //   dispatch(removeProfileUser())
-  //   navigate("/login")
-  //    }},[userData,navigate])
+  useEffect(()=>{if (!token && !userData){
+    dispatch(removeProfileUser())
+    navigate("/login")
+     }},[userData,navigate])
 
   // 2nd way -- alredy token validation is take care from backend so we can simply call the api
 
-  const fetchUser= async()=>{
-    try {const userApi= await axios.get("http://localhost:7777/profile/getProfile",{withCredentials:true})
-    dispatch(addProfileUser(userApi.data.data.userDetails))
-    console.log(userApi.data.data.userDetails);
+  // const fetchUser= async()=>{
+  //   try {const userApi= await axios.get("http://localhost:7777/profile/getProfile",{withCredentials:true})
+  //   dispatch(addProfileUser(userApi.data.data.userDetails))
     
-  } 
-    catch(err) {
-      navigate("/login")
+  // } 
+  //   catch(err) {
+  //     navigate("/login")
+  //   }
 
-    }
 
-
-  }
-  useEffect(()=>{if(!userData){fetchUser()}},[navigate])
+  // }
+  // useEffect(()=>{if(!userData){fetchUser()}},[navigate])
   return (
     <div>
       <NavBar />

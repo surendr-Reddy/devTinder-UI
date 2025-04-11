@@ -4,7 +4,7 @@ import profileUserReducer from "./profileSlice"
 
 const appStore= configureStore({
     reducer:{
-      profileData:profileUserReducer
+      user:profileUserReducer
 
     }
 })

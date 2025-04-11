@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {addProfileUser} from "./utils/profileSlice"
 import { useNavigate } from "react-router";
+import { BASEURL } from "./utils/constants";
 
 
 const Login = () => {
@@ -11,14 +12,14 @@ const Login = () => {
 
   const dispatch=useDispatch();
   const navigate = useNavigate();
-  const profileData= useSelector((store)=>store.profileData)
+  const userData= useSelector((store)=>store.user)
 
   
   const handelSubmit = async () => {
     try {
       
       const response = await axios.post(
-        "http://localhost:7777/login",
+        BASEURL+"/login",
         { emailId, password },
         { withCredentials: true }
       );
