@@ -15,6 +15,7 @@
     "axios": "^1.8.4",
     "daisyui": "^5.0.12",
     "js-cookie": "^3.0.5",
+    "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
